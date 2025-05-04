@@ -1,0 +1,24 @@
+/dts-v1/;
+
+/ {
+	compatible = "brcm,bcm2835";
+
+	fragment@0 {
+		target = <0xffffffff>;
+
+		__overlay__ {
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+
+			ads1115@68 {
+				compatible = "invensense,ads1115";
+				reg = <0x68>;
+				status = "okay";
+			};
+		};
+	};
+
+	__fixups__ {
+		i2c1 = "/fragment@0:target:0";
+	};
+};
